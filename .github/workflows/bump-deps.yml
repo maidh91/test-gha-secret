@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
-        uses: ./.github/steps/bump-deps
+        uses: maidh91/test-gha-secret/.github/steps/bump-deps@main
         with:
           use-checkout: true
           use-git-config: true
