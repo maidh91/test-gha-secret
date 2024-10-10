@@ -21,13 +21,13 @@ outputs:
 runs:
   using: composite
   steps:
-    - if: ${{ inputs.use-checkout }}
+    - if: ${{ inputs.use-checkout == 'true' }}
       name: Checkout
       uses: actions/checkout@v4
       with:
         ref: ${{ github.ref_name }}
 
-    - if: ${{ inputs.use-git-config }}
+    - if: ${{ inputs.use-git-config == 'true' }}
       name: Git config
       id: git-config
       shell: bash
@@ -51,7 +51,7 @@ runs:
       env:
         NODE_AUTH_TOKEN: ${{ inputs.GITHUB_TOKEN }}
 
-    - if: ${{ inputs.use-create-pr }}
+    - if: ${{ inputs.use-create-pr == 'true' }}
       name: Create PR
       id: pr
       uses: peter-evans/create-pull-request@v4
