@@ -1,0 +1,15 @@
+name: Bump Deps
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bump-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        uses: ./.github/steps/bump-deps
+        with:
+          use-checkout: true
+          use-git-config: true
+          use-create-pr: false
