@@ -15,11 +15,11 @@ inputs:
     default: ""
 
 outputs:
-  pull-request-url: ${{ steps.pr.outputs.pull-request-url }}
+  pull-request-url:
+    value: ${{ steps.pr.outputs.pull-request-url }}
 
 runs:
   using: composite
-
   steps:
     - if: ${{ inputs.use-checkout }}
       name: Checkout
@@ -48,8 +48,6 @@ runs:
     - name: Install dependencies
       shell: bash
       run: npm install
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - if: ${{ inputs.use-create-pr }}
       name: Create PR
