@@ -10,6 +10,10 @@ inputs:
   use-create-pr:
     type: boolean
     default: false
+  GITHUB_TOKEN:
+    description: "GITHUB_TOKEN"
+    type: string
+    required: true
   labels:
     type: string
     default: ""
