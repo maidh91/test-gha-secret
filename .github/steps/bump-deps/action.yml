@@ -48,13 +48,15 @@ runs:
     - name: Install dependencies
       shell: bash
       run: npm install
+      env:
+        NODE_AUTH_TOKEN: ${{ inputs.GITHUB_TOKEN }}
 
     - if: ${{ inputs.use-create-pr }}
       name: Create PR
       id: pr
       uses: peter-evans/create-pull-request@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ inputs.GITHUB_TOKEN }}
         commit-message: Bump deps
         committer: GitHub Actions Bot <noreply@holepunchto.com>
         author: GitHub Actions Bot <noreply@holepunchto.com>
