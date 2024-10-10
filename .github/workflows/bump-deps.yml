@@ -7,10 +7,17 @@ jobs:
   bump-deps:
     runs-on: ubuntu-latest
     steps:
-      - name: Install dependencies
-        uses: holepunchto/actions/.github/steps/bump-deps@08998c7666a9277d5e2aea473871b761086ccf04
+      - uses: holepunchto/actions/.github/steps/bump-deps@2bd56cb
         with:
           use-checkout: true
           use-git-config: true
           use-create-pr: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: holepunchto/actions/.github/steps/bump-versions@2bd56cb
+        with:
+          use-checkout: true
+          use-git-config: true
+          use-create-pr: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          version: minor
