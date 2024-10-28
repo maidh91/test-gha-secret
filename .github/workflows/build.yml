@@ -30,10 +30,11 @@ on:
 
 jobs:
   build:
-    uses: holepunchto/actions/.github/workflows/keet-automation.yml@v1
-    secrets: inherit
-    with:
-      job: desktop
-      channel: ${{ inputs.channel-text || inputs.channel || 'preview' }}
-      commit: ${{ github.sha }}
-      notify: ${{ inputs.notify && 'true' || 'false' }}
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          ABC: ${{ inputs.channel-text || inputs.channel || 'preview' }}
+          XXX: ${{ inputs.notify && 'true' || 'false' }}
+        run: |
+          echo $ABC $XXX
+       
