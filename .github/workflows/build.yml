@@ -1,0 +1,39 @@
+name: Build
+
+on:
+  workflow_call:
+    inputs:
+      channel:
+        type: string
+        default: ''
+      version:
+        type: string
+        default: ''
+      notify:
+        type: boolean
+        default: true
+  workflow_dispatch:
+    inputs:
+      channel:
+        type: choice
+        description: Select the channel
+        options:
+          - preview
+          - staging
+      channel-text:
+        description: Or specify another channel
+        required: false
+      notify:
+        type: boolean
+        description: Notify to Slack
+        default: true
+
+jobs:
+  build:
+    uses: holepunchto/actions/.github/workflows/keet-automation.yml@v1
+    secrets: inherit
+    with:
+      job: desktop
+      channel: ${{ inputs.channel-text || inputs.channel || 'preview' }}
+      commit: ${{ github.sha }}
+      notify: ${{ inputs.notify && 'true' || 'false' }}
